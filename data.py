@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from keras.utils.np_utils import to_categorical
 
 def load_train():
@@ -20,6 +19,7 @@ def preprocess_input(X, Y):
     X = normalize(X)
     X = reshape(X)
     Y = encode_to_one_hot_vector(Y)
+    return (X, Y)
     
 
 def normalize(X):

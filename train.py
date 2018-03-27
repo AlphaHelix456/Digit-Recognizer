@@ -1,20 +1,17 @@
-from sklearn.model_selection import train_test_split
 from keras.preprocessing.image import ImageDataGenerator
+from model import get_model
 from keras.callbacks import ReduceLROnPlateau
 
-SEED = 42
 BATCH_SIZE = 32
 EPOCHS = 20
 
 
-def train_model(X_train, Y_train):
-    X_train, X_val, Y_train, Y_val = train_test_split(X_train, Y_train,
-                                                      test_size=0.1,
-                                                      random_state=SEED)
+def train_model(X_train, X_val, Y_train, Y_val):
+    model = get_model()
     callbacks = get_callbacks()
     datagen = get_datagen(X_train)
 
-    model.fit_generator(datagen.flow(X_Train, Y_train, batch_size=BATCH_SIZE),
+    model.fit_generator(datagen.flow(X_train, Y_train, batch_size=BATCH_SIZE),
                         epochs=EPOCHS,
                         verbose=2,
                         callbacks=callbacks,
