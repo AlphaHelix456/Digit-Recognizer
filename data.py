@@ -20,16 +20,16 @@ def preprocess_input(X, Y):
     X = normalize(X)
     X = reshape(X)
     Y = encode_to_one_hot_vector(Y)
+    
 
-
-def _normalize(X):
+def normalize(X):
     return X.astype('float32') / 255
 
 
-def _reshape(X):
+def reshape(X):
     return X.values.reshape(-1, 28, 28, 1)
 
 
-def _encode_to_one_hot_vector(Y):
+def encode_to_one_hot_vector(Y):
     return to_categorical(Y, num_classes=10)
 
